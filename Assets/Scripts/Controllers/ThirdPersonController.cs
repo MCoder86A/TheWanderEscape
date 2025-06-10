@@ -1,7 +1,6 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 
 namespace Assets.Scripts.Controllers
 {
@@ -59,7 +58,7 @@ namespace Assets.Scripts.Controllers
 
             if (cc.isGrounded && m_Animator != null)
             {
-                m_Animator.SetFloat(m_speedParam, cc.velocity.magnitude);
+                m_Animator.SetFloat(m_speedParam, Mathf.Lerp(m_Animator.GetFloat(m_speedParam), cc.velocity.magnitude, Time.deltaTime * 5));
             }
 
             if (jumpAction.WasPressedThisFrame())
