@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ely By K.Atienza
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 1529e3215b8de6449827270aaa009b4c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 627ecc46df8878f4e887c108acd5b401, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
