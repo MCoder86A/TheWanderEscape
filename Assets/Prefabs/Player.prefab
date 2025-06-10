@@ -85,10 +85,10 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1
+  m_Radius: 0.24
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.25
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b4dcad4c4d52144595b9a92166d106a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.05
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7b4dcad4c4d52144595b9a92166d106a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -185,6 +185,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7b4dcad4c4d52144595b9a92166d106a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 7b4dcad4c4d52144595b9a92166d106a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8183481454299698827, guid: 7b4dcad4c4d52144595b9a92166d106a, type: 3}
       propertyPath: m_TagString

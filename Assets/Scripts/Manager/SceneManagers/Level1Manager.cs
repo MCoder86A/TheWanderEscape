@@ -23,6 +23,9 @@ namespace Manager.SceneManagers
         {
             Transform player = Instantiate(characterSelector.CurrentCharacter.Prefab).transform;
             FindAnyObjectByType<CinemachineCamera>().Target.TrackingTarget = player;
+            player.GetComponent<CharacterController>().enabled = false;
+            player.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
+            player.GetComponent<CharacterController>().enabled = true;
         }
     }
 }

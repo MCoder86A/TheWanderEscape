@@ -4,7 +4,7 @@
     {
         public static class SceneName
         {
-            public const string Level1 = "MainScene";
+            public const string Level1 = "Desert";
         }
     }
 }
