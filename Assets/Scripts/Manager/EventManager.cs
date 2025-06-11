@@ -11,5 +11,9 @@ namespace Manager
         public static event Action OnDialogReachedEnd;
         public static void Broadcast_OnDialogReachedEnd()
             => OnDialogReachedEnd?.Invoke();
+
+        public static event Action OnTimeLineIntroStarted;
+        public static void Broadcast_OnTimeLineIntroStarted(bool p_enable)
+            => OnTimeLineIntroStarted?.Invoke();
     }
 }
