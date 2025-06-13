@@ -20,6 +20,9 @@ namespace UI.Notification
         [SerializeField] private Animator m_resultAnimator;
         [SerializeField, AnimatorParam(nameof(m_resultAnimator))] private int m_expandAnimParam;
 
+        [SerializeField] private float m_delayBetweenNotification = 1;
+        private float timer = 0;
+
         private void Awake()
         {
             Instance = this;
@@ -32,10 +35,11 @@ namespace UI.Notification
 
         private void ProccessQueue()
         {
-            print($"{m_resultAnimator.playableGraph.IsPlaying()} -- " +
-                $"{m_resultAnimator.playableGraph.IsDone()}");
-            if(m_resultMsgQ.Count > 0 && !m_resultAnimator.playableGraph.IsPlaying())
+            timer += Time.deltaTime;
+            if(timer > m_delayBetweenNotification && m_resultMsgQ.Count > 0)
             {
+                timer = 0;
+
                 ResultMsg _result = m_resultMsgQ.Dequeue();
                 m_text.text = _result.TextMsg;
                 m_border.color = _result.ColorMsg;
@@ -55,8 +59,8 @@ namespace UI.Notification
         {
             Color color = p_priority switch
             {
-                PRIORITY.DANGER => WarningColor,
-                PRIORITY.WARNING => DangerColor,
+                PRIORITY.DANGER => DangerColor,
+                PRIORITY.WARNING => WarningColor,
                 _ => throw new NotImplementedException(),
             };
             
