@@ -1,6 +1,5 @@
 ﻿using Interface.Combat;
 using NaughtyAttributes;
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -46,7 +45,7 @@ namespace NPC
 
         private void Update()
         {
-            if (AttackableUnderAttackRange(out IAttackable attackable))
+            if (AttackableUnderAttackRange(out IAttackable attackable) && attackable.IsAlive())
             {
                 FollowAttackable(attackable);
                 Attack(attackable);
@@ -114,5 +113,7 @@ namespace NPC
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius);
         }
+
+        public int GetMaxHealth() => m_maxHealth;
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Interface.Combat;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -74,5 +73,7 @@ namespace Players
         public int GetHealth() => m_health;
 
         public bool IsAlive() => m_health > 0;
+
+        public int GetMaxHealth() => m_maxHealth;
     }
 }

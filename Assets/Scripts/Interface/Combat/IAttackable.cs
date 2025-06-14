@@ -6,6 +6,7 @@ namespace Interface.Combat
     {
         void Attack(int damage);
         int GetHealth();
+        int GetMaxHealth();
         bool IsAlive();
         MonoBehaviour MonoBehaviour { get; }
     }
