@@ -81,6 +81,13 @@ namespace NPC
         private void FollowAttackable(IAttackable attackable)
         {
             m_navAgent.SetDestination(attackable.MonoBehaviour.transform.position);
+            if(m_navAgent.velocity.magnitude <= 0.5f)
+            {
+                if(m_navAgent.updateRotation) m_navAgent.updateRotation = false;
+                transform.forward = Vector3.Slerp(transform.forward, (attackable.MonoBehaviour.transform.position - transform.position).normalized, Time.deltaTime * 5);
+            }
+            else 
+                if(!m_navAgent.updateRotation) m_navAgent.updateRotation = true;
         }
 
         private void Attack(IAttackable attackable)
