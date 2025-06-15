@@ -61,7 +61,7 @@ namespace NPC
             if (AttackableUnderAttackRange(out IAttackable attackable) && attackable.IsAlive() && IsAlive())
             {
                 HandleAiAgent(attackable);
-                if(m_navAgent.enabled) FollowAttackable(attackable);
+                FollowAttackable(attackable);
                 Attack(attackable);
             }
 
@@ -102,7 +102,7 @@ namespace NPC
 
         private void FollowAttackable(IAttackable attackable)
         {
-            m_navAgent.SetDestination(attackable.MonoBehaviour.transform.position);
+            if (m_navAgent.enabled) m_navAgent.SetDestination(attackable.MonoBehaviour.transform.position);
             if(m_navAgent.velocity.magnitude <= 0.5f)
             {
                 if(m_navAgent.updateRotation) m_navAgent.updateRotation = false;
