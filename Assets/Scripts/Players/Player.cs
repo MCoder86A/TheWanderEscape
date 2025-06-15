@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Controllers;
+using Interface;
 using Interface.Combat;
 using Manager;
 using NaughtyAttributes;
@@ -7,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace Players
 {
-    public class Player : MonoBehaviour, IAttackable
+    public class Player : MonoBehaviour, IAttackable, IEventReceiver
     {
         [SerializeField] private Animator m_animator;
 
@@ -23,6 +24,10 @@ namespace Players
         [Header("INPUT ACTIONS")]
         [SerializeField] private InputActionProperty m_kickAction;
 
+        [Header("AUDIO_SOURCE")]
+        [SerializeField] private AudioSource m_audioKickSource;
+        [SerializeField] private AudioSource m_audioKickWaveSource;
+
         [Header("MISC")]
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_dieParam;
         [SerializeField] private int m_maxHealth = 100;
@@ -32,11 +37,14 @@ namespace Players
 
         public MonoBehaviour MonoBehaviour => this;
 
+        private bool IsPlayable = true;
+
         private void Awake()
         {
             m_health = m_maxHealth;
             m_kickAction.action.performed += Action_kickPerformed;
             m_controller = GetComponent<ThirdPersonController>();
+            RegisterEvents();
         }
 
         private void Update()
@@ -46,20 +54,25 @@ namespace Players
 
         private void Action_kickPerformed(InputAction.CallbackContext _)
         {
-            if(m_kickCooldownTime == 0 && IsAlive())
+            if(m_kickCooldownTime == 0 && IsAlive() && IsPlayable)
             {
                 m_kickCooldownTime = m_kickCooldown;
                 m_animator.SetTrigger(m_kickParam);
+            }
+        }
 
-                Collider[] collider = Physics.OverlapSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius, m_kickLayer);
-                if (collider != null)
+        private void OnKickAnim()
+        {
+            m_audioKickWaveSource.Play();
+            Collider[] collider = Physics.OverlapSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius, m_kickLayer);
+            if (collider != null)
+            {
+                for(int i=0; i<collider.Length; i++)
                 {
-                    for(int i=0; i<collider.Length; i++)
+                    if (collider[i].TryGetComponent(out IAttackable attackable) && attackable.IsAlive())
                     {
-                        if (collider[i].TryGetComponent(out IAttackable attackable))
-                        {
-                            attackable.Attack(10);
-                        }
+                        attackable.Attack(10);
+                        m_audioKickSource.Play();
                     }
                 }
             }
@@ -87,5 +100,25 @@ namespace Players
         public bool IsAlive() => m_health > 0;
 
         public int GetMaxHealth() => m_maxHealth;
+
+        public void RegisterEvents()
+        {
+            EventManager.OnTimeLineIntroStarted += EventManager_OnTimeLineIntroStarted;
+        }
+
+        private void EventManager_OnTimeLineIntroStarted(bool started)
+        {
+            IsPlayable = !started;
+        }
+
+        public void UnRegisterEvents()
+        {
+            EventManager.OnTimeLineIntroStarted -= EventManager_OnTimeLineIntroStarted;
+        }
+
+        private void OnDestroy()
+        {
+            UnRegisterEvents();
+        }
     }
 }

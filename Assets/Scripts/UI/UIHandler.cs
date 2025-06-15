@@ -52,9 +52,9 @@ namespace UI
             EventManager.OnObjectiveUpdate -= EventManager_OnObjectiveUpdate;
         }
 
-        private void Play()
+        private async void Play()
         {
-            if (characterSelector.CurrentCharacter != null) SceneManager.LoadScene(Constants.SceneName.Level1);
+            if (characterSelector.CurrentCharacter != null) await SceneManager.LoadSceneAsync(Constants.SceneName.Level1);
             characterSelMenu.SetActive(characterSelector.CurrentCharacter == null);
         }
 

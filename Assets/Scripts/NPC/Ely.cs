@@ -28,10 +28,15 @@ namespace NPC
         [Header("AI AGENT")]
         [SerializeField] private float m_agentDisableProximity = 1;
 
+        [Header("AUDIO_SOURCE")]
+        [SerializeField] private AudioSource m_audioKickSource;
+        [SerializeField] private AudioSource m_audioKickWaveSource;
+        
         [Header("MISC")]
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_dieParam;
         [SerializeField] private int m_maxHealth = 100;
         private int m_health;
+
 
         public MonoBehaviour MonoBehaviour => this;
 
@@ -46,6 +51,8 @@ namespace NPC
             if (m_health == 0)
             {
                 m_animator.SetTrigger(m_dieParam);
+                m_navAgent.updateRotation = false;
+                m_navAgent.updatePosition = false;
                 m_navAgent.enabled = false;
                 EventManager.Broadcast_OnSomeoneDie(this);
             }
@@ -112,20 +119,28 @@ namespace NPC
                 if(!m_navAgent.updateRotation) m_navAgent.updateRotation = true;
         }
 
-        private void Attack(IAttackable attackable)
+        private void Attack(IAttackable _)
         {
             if(m_kickCooldownTime == 0 &&
                 Physics.CheckSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius, m_kickLayer))
             {
-                Kick(attackable);
+                m_animator.SetTrigger(m_kickParam);
                 m_kickCooldownTime = m_kickCooldown;
             }
         }
 
-        private void Kick(IAttackable attackable)
+        private void OnKickAnim()
         {
-            m_animator.SetTrigger(m_kickParam);
-            attackable.Attack(5);
+            m_audioKickWaveSource.Play();
+            Collider[] collider = Physics.OverlapSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius, m_kickLayer);
+            for (int i = 0; i < collider.Length; i++)
+            {
+                if (collider[i].TryGetComponent(out IAttackable attackable))
+                {
+                    m_audioKickSource.Play();
+                    attackable.Attack(5);
+                }
+            }
         }
 
         private void OnDrawGizmosSelected()

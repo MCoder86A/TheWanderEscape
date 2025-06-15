@@ -41,7 +41,7 @@ namespace UI
 
         private void InitParams()
         {
-            current = Mathf.Clamp(0, 0, displayTransform.childCount);
+            current = Mathf.Clamp(0, 0, displayTransform.childCount-1);
         }
 
         private void OnNext()
@@ -59,6 +59,7 @@ namespace UI
         private void Switch(int pointer)
         {
             int childCnt = displayTransform.childCount;
+            if (pointer == -1) pointer = childCnt - 1;
             for(int i=0; i<childCnt; i++)
             {
                 displayTransform.GetChild(i).gameObject.SetActive(pointer == i);
