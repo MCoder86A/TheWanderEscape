@@ -53,13 +53,14 @@ namespace UI
         private void OnPrevious()
         {
             int childCnt = displayTransform.childCount;
-            Switch(current = --current%childCnt);
+            current = --current % childCnt;
+            if (current == -1) current = childCnt - 1;
+            Switch(current);
         }
 
         private void Switch(int pointer)
         {
             int childCnt = displayTransform.childCount;
-            if (pointer == -1) pointer = childCnt - 1;
             for(int i=0; i<childCnt; i++)
             {
                 displayTransform.GetChild(i).gameObject.SetActive(pointer == i);
