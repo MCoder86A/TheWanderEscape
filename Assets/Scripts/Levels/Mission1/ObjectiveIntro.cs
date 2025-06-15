@@ -10,7 +10,7 @@ namespace Levels.Mission1
         {
             base.OnTimelineEnd();
             ObjectiveHandler.Instance.NextObjective();
-            NotificationHandler.Instance.PushResultMsg("MSSION STARTED", NotificationHandler.PRIORITY.WARNING);
+            NotificationHandler.Instance.PushResultMsg("MISSION STARTED", NotificationHandler.PRIORITY.WARNING);
         }
     }
 }

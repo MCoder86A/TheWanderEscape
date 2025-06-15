@@ -84,7 +84,7 @@ MonoBehaviour:
   m_navAgent: {fileID: 229230924274934719}
   m_kickParam: -1092128709
   m_kickCooldown: 2
-  m_kickRadius: 0.51
+  m_kickRadius: 0.75
   m_kickOffset: {x: 0, y: 0.6, z: 0.81}
   m_kickLayer:
     serializedVersion: 2
@@ -94,6 +94,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_speedParam: -823668238
+  m_agentDisableProximity: 1
   m_dieParam: 20298039
   m_maxHealth: 50
 --- !u!195 &229230924274934719

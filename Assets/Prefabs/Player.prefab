@@ -184,7 +184,7 @@ MonoBehaviour:
   m_animator: {fileID: 5648829890743047048}
   m_kickParam: -1092128709
   m_kickCooldown: 2
-  m_kickRadius: 0.4
+  m_kickRadius: 0.7
   m_kickOffset: {x: 0, y: 0.46, z: 0.77}
   m_kickLayer:
     serializedVersion: 2
