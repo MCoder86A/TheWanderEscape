@@ -1,4 +1,5 @@
-﻿using NaughtyAttributes;
+﻿using Manager;
+using NaughtyAttributes;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -41,11 +42,20 @@ namespace Assets.Scripts.Controllers
         InputAction sprintAction;
         InputAction jumpAction;
 
+        bool canMove = true;
+
         private void Awake()
         {
             moveAction = InputSystem.actions.FindAction("Move");
             sprintAction = InputSystem.actions.FindAction("Sprint");
             jumpAction = InputSystem.actions.FindAction("Jump");
+
+            EventManager.OnTimeLineIntroStarted += EventManager_OnTimeLineIntroStarted;
+        }
+
+        private void EventManager_OnTimeLineIntroStarted(bool started)
+        {
+            canMove = !started;
         }
 
         void Start()
@@ -58,6 +68,8 @@ namespace Assets.Scripts.Controllers
         {
             inputHorizontal = moveAction.ReadValue<Vector2>().x;
             inputVertical = moveAction.ReadValue<Vector2>().y;
+
+            if(!canMove) { inputHorizontal = inputVertical = 0; }
 
             if (cc.isGrounded && m_Animator != null)
             {
@@ -157,5 +169,9 @@ namespace Assets.Scripts.Controllers
             }
         }
 
+        private void OnDestroy()
+        {
+            EventManager.OnTimeLineIntroStarted -= EventManager_OnTimeLineIntroStarted;
+        }
     }
 }

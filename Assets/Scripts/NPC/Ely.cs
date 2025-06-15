@@ -1,6 +1,7 @@
 ﻿using Interface.Combat;
 using Manager;
 using NaughtyAttributes;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,9 @@ namespace NPC
         [SerializeField] private LayerMask m_attackLayer;
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_speedParam;
 
+        [Header("AI AGENT")]
+        [SerializeField] private float m_agentDisableProximity = 1;
+
         [Header("MISC")]
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_dieParam;
         [SerializeField] private int m_maxHealth = 100;
@@ -42,6 +46,7 @@ namespace NPC
             if (m_health == 0)
             {
                 m_animator.SetTrigger(m_dieParam);
+                m_navAgent.enabled = false;
                 EventManager.Broadcast_OnSomeoneDie(this);
             }
         }
@@ -52,15 +57,26 @@ namespace NPC
 
         private void Update()
         {
+
             if (AttackableUnderAttackRange(out IAttackable attackable) && attackable.IsAlive() && IsAlive())
             {
-                FollowAttackable(attackable);
+                HandleAiAgent(attackable);
+                if(m_navAgent.enabled) FollowAttackable(attackable);
                 Attack(attackable);
             }
 
             SyncAnimationParam();
 
             if (m_kickCooldownTime != 0) m_kickCooldownTime = Mathf.Clamp(m_kickCooldownTime - Time.deltaTime, 0, float.MaxValue);
+        }
+
+        private void HandleAiAgent(IAttackable attackable)
+        {
+            if(Vector3.Distance(attackable.MonoBehaviour.transform.position, transform.position) <= m_agentDisableProximity)
+            {
+                if (m_navAgent.enabled) m_navAgent.enabled = false;
+            }
+            else if(!m_navAgent.enabled) m_navAgent.enabled = true;
         }
 
         private void SyncAnimationParam()
@@ -119,6 +135,9 @@ namespace NPC
 
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position + transform.rotation * m_kickOffset, m_kickRadius);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, m_agentDisableProximity);
         }
 
         public int GetMaxHealth() => m_maxHealth;
