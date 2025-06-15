@@ -136,7 +136,11 @@ namespace Assets.Scripts.Controllers
             Vector3 horizontalDirection = forward + right;
 
             Vector3 moviment = verticalDirection + horizontalDirection;
-            cc.Move(moviment);
+
+            if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Kick") || !isSprinting)
+            {
+                cc.Move(moviment);
+            }
 
         }
 
