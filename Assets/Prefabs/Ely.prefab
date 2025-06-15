@@ -94,6 +94,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   m_speedParam: -823668238
+  m_dieParam: 20298039
   m_maxHealth: 100
 --- !u!195 &229230924274934719
 NavMeshAgent:

@@ -201,6 +201,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_dieParam: 20298039
   m_maxHealth: 100
 --- !u!208 &-4994725885867429332
 NavMeshObstacle:

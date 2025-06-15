@@ -1,4 +1,5 @@
 ﻿using Interface.Combat;
+using Manager;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,6 +25,7 @@ namespace NPC
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_speedParam;
 
         [Header("MISC")]
+        [SerializeField, AnimatorParam(nameof(m_animator))] private int m_dieParam;
         [SerializeField] private int m_maxHealth = 100;
         private int m_health;
 
@@ -37,6 +39,11 @@ namespace NPC
         public void Attack(int damage)
         {
             m_health = Mathf.Clamp(m_health - damage, 0, m_maxHealth);
+            if (m_health == 0)
+            {
+                m_animator.SetTrigger(m_dieParam);
+                EventManager.Broadcast_OnSomeoneDie(this);
+            }
         }
 
         public int GetHealth() => m_health;

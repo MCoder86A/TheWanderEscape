@@ -1,4 +1,5 @@
 ﻿using NaughtyAttributes;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ namespace Assets.Scripts.Controllers
         [Space]
         [Tooltip("Force that pulls the player down. Changing this value causes all movement, jumping and falling to be changed as well.")]
         public float gravity = 9.8f;
+
+        public bool IsIdle {  get; private set; } = true;
 
         float jumpElapsedTime = 0;
 
@@ -75,8 +78,13 @@ namespace Assets.Scripts.Controllers
 
             HeadHittingDetect();
 
+            UpdateParams();
         }
 
+        private void UpdateParams()
+        {
+            IsIdle = inputHorizontal == 0 && inputVertical == 0;
+        }
 
         private void FixedUpdate()
         {
