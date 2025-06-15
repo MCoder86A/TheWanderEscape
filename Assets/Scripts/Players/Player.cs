@@ -58,7 +58,7 @@ namespace Players
                     {
                         if (collider[i].TryGetComponent(out IAttackable attackable))
                         {
-                            attackable.Attack(5);
+                            attackable.Attack(10);
                         }
                     }
                 }

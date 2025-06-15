@@ -52,7 +52,7 @@ namespace NPC
 
         private void Update()
         {
-            if (AttackableUnderAttackRange(out IAttackable attackable) && attackable.IsAlive())
+            if (AttackableUnderAttackRange(out IAttackable attackable) && attackable.IsAlive() && IsAlive())
             {
                 FollowAttackable(attackable);
                 Attack(attackable);

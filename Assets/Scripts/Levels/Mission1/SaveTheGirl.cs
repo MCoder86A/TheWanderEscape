@@ -12,8 +12,6 @@ namespace Levels.Mission1
         {
             base.StartMission();
             EventManager.OnSomeoneDie += EventManager_OnSomeoneDie;
-            CompletionState = COMPLETION_STATE.START;
-            EventManager.Broadcast_OnObjectiveUpdate(this);
         }
 
         private void EventManager_OnSomeoneDie(Interface.Combat.IAttackable attackable)
