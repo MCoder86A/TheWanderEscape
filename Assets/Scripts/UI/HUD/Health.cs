@@ -20,19 +20,12 @@ namespace UI.HUD
 
         private void Update()
         {
-
+            transform.forward = Camera.main.transform.forward;
             float _currentH = IAttackable.GetHealth() / (float)m_maxHealth;
             if (m_healthBar.fillAmount != _currentH)
             {
                 m_healthBar.fillAmount = _currentH;
             }
-        }
-
-        private void OnGUI()
-        {
-            Vector2 _pos = RectTransformUtility.WorldToScreenPoint(Camera.main, m_healthBarWorldPosition.position);
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(transform.parent.GetComponent<RectTransform>(), _pos, null, out Vector2 _tpos);
-            GetComponent<RectTransform>().anchoredPosition = _tpos;
         }
     }
 }

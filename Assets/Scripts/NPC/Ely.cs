@@ -102,7 +102,7 @@ namespace NPC
         private void Kick(IAttackable attackable)
         {
             m_animator.SetTrigger(m_kickParam);
-            attackable.Attack(10);
+            attackable.Attack(5);
         }
 
         private void OnDrawGizmosSelected()

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4662396438306341370}
   - component: {fileID: 2101187926663566533}
   - component: {fileID: 3223649898084438439}
+  - component: {fileID: 6415953508330331547}
   m_Layer: 5
   m_Name: HUDCanvas
   m_TagString: Untagged
@@ -28,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 682955306648991619}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5605318101359776625}
@@ -48,7 +49,7 @@ Canvas:
   m_GameObject: {fileID: 682955306648991619}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -102,6 +103,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6415953508330331547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682955306648991619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28d13240e6ee42647a8527da54398d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_healthBar: {fileID: 1550552705646793145}
+  m_healthBarWorldPosition: {fileID: 0}
 --- !u!1 &6851236386451423345
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +128,6 @@ GameObject:
   - component: {fileID: 5605318101359776625}
   - component: {fileID: 4187308261216328780}
   - component: {fileID: 1550552705646793145}
-  - component: {fileID: 6788142017377198869}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -135,10 +149,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8827008068784274369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17, y: -4}
-  m_SizeDelta: {x: 96.829285, y: 17.819794}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4187308261216328780
 CanvasRenderer:
@@ -161,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.682353, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.025537524, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -178,17 +192,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6788142017377198869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6851236386451423345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28d13240e6ee42647a8527da54398d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_healthBar: {fileID: 1550552705646793145}
-  m_healthBarWorldPosition: {fileID: 0}
