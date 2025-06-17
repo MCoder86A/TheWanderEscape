@@ -1,7 +1,6 @@
 ﻿using Interface.Combat;
 using Manager;
 using NaughtyAttributes;
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -51,10 +50,10 @@ namespace NPC
             if (m_health == 0)
             {
                 m_animator.SetTrigger(m_dieParam);
-                m_navAgent.updateRotation = false;
-                m_navAgent.updatePosition = false;
-                m_navAgent.enabled = false;
                 EventManager.Broadcast_OnSomeoneDie(this);
+                m_navAgent.updatePosition = false;
+                m_navAgent.updateRotation = false;
+                m_navAgent.enabled = true;
             }
         }
 
