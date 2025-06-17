@@ -11,6 +11,7 @@ namespace UI.Controls
         private string m_ControlPath;
 
         [SerializeField] private Freelook m_freelook;
+        [SerializeField] private float m_scale = 2f;
 
         protected override string controlPathInternal
         {
@@ -20,7 +21,7 @@ namespace UI.Controls
 
         private void OnGUI()
         {
-            SendValueToControl<Vector2>(new(m_freelook.X, m_freelook.Y));
+            SendValueToControl(new Vector2(m_freelook.X, m_freelook.Y) * m_scale);
         }
     }
 }

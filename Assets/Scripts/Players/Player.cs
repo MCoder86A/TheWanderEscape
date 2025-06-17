@@ -28,6 +28,9 @@ namespace Players
         [SerializeField] private AudioSource m_audioKickSource;
         [SerializeField] private AudioSource m_audioKickWaveSource;
 
+        [Header("CAMERA_FOLLOW")]
+        [field: SerializeField] public Transform LookAt;
+
         [Header("MISC")]
         [SerializeField, AnimatorParam(nameof(m_animator))] private int m_dieParam;
         [SerializeField] private int m_maxHealth = 100;

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UI;
 using Unity.Cinemachine;
+using Players;
 namespace Manager.SceneManagers
 {
     public class Level1Manager : SceneManager<Level1Manager>
@@ -23,7 +24,7 @@ namespace Manager.SceneManagers
         private void SpwanPlayer()
         {
             Transform player = Instantiate(characterSelector.CurrentCharacter.Prefab).transform;
-            playerVcam.Target.TrackingTarget = player;
+            playerVcam.Target.TrackingTarget = player.GetComponent<Player>().LookAt;
             player.GetComponent<CharacterController>().enabled = false;
             player.transform.SetPositionAndRotation(playerSpawnPoint.position, playerSpawnPoint.rotation);
             player.GetComponent<CharacterController>().enabled = true;

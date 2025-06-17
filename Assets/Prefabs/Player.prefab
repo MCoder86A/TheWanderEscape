@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 843805491055450930}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.6, z: -0}
+  m_LocalPosition: {x: -0, y: 0.99, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,6 +333,7 @@ MonoBehaviour:
     m_Reference: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_audioKickSource: {fileID: 8064727494012455565}
   m_audioKickWaveSource: {fileID: 6402329994515808894}
+  LookAt: {fileID: 634153493432919522}
   m_dieParam: 20298039
   m_maxHealth: 50
 --- !u!208 &-4994725885867429332

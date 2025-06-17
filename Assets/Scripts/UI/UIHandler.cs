@@ -25,6 +25,7 @@ namespace UI
             DontDestroyOnLoad(gameObject);
             InitParams();
             RegisterEvents();
+            Application.targetFrameRate = 200;
         }
 
         public void RegisterEvents()
