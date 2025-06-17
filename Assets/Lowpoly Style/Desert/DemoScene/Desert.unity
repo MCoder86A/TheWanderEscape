@@ -26951,6 +26951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ControlPath: <Mouse>/delta
   m_freelook: {fileID: 1343008673}
+  m_scale: 2
 --- !u!1001 &1354934609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30458,13 +30459,44 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1352167935331498414, guid: 3ef98ba0a74838b46b6dcafbe7f051a3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1622349854}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2380799174247615230, guid: 3ef98ba0a74838b46b6dcafbe7f051a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1628753526}
   m_SourcePrefab: {fileID: 100100000, guid: 3ef98ba0a74838b46b6dcafbe7f051a3, type: 3}
 --- !u!4 &1628753524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1352167935331498414, guid: 3ef98ba0a74838b46b6dcafbe7f051a3, type: 3}
   m_PrefabInstance: {fileID: 1628753523}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1628753525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2380799174247615230, guid: 3ef98ba0a74838b46b6dcafbe7f051a3, type: 3}
+  m_PrefabInstance: {fileID: 1628753523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1628753526
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628753525}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8959455
+  m_Height: 2.1439712
+  m_Direction: 1
+  m_Center: {x: 0.0005355607, y: 0.9537653, z: 0.0023603295}
 --- !u!1001 &1641797125
 PrefabInstance:
   m_ObjectHideFlags: 0
