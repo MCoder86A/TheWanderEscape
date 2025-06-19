@@ -297,7 +297,7 @@ MonoBehaviour:
   velocity: 0.871
   sprintAdittion: 3.5
   jumpForce: 12.5
-  jumpTime: 2
+  jumpTime: 1
   gravity: 9.8
 --- !u!114 &-145341099751226050
 MonoBehaviour:

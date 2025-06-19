@@ -1,6 +1,7 @@
 ﻿using Manager;
 using NaughtyAttributes;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -76,9 +77,8 @@ namespace Assets.Scripts.Controllers
                 m_Animator.SetFloat(m_speedParam, Mathf.Lerp(m_Animator.GetFloat(m_speedParam), cc.velocity.magnitude, Time.deltaTime * 5));
             }
 
-            if (jumpAction.WasPressedThisFrame())
+            if (jumpAction.WasPressedThisFrame() && cc.isGrounded)
             {
-                isJumping = true;
                 m_Animator.SetTrigger(m_jumpParam);
             }
 
@@ -91,6 +91,11 @@ namespace Assets.Scripts.Controllers
             HeadHittingDetect();
 
             UpdateParams();
+        }
+
+        private void OnJumpAnim()
+        {
+            isJumping = true;
         }
 
         private void UpdateParams()
@@ -149,11 +154,11 @@ namespace Assets.Scripts.Controllers
 
             Vector3 moviment = verticalDirection + horizontalDirection;
 
-            if (!m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Kick") || !isSprinting)
+            if (m_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Kick") && isSprinting)
             {
-                cc.Move(moviment);
+                moviment.x = moviment.z = 0;
             }
-
+            cc.Move(moviment);
         }
 
         void HeadHittingDetect()
